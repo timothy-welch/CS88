@@ -1,0 +1,66 @@
+### --- Lambda Expressions --- ###
+#Don't use return, always return value of expression
+#Don't have intrinsic name when using enviornment diagram
+#lambda <argument or arg_tuple> : <expression using arguments>
+
+def say_hi(name):
+    print(f'Hi, {name}') #How to do it traditionally
+
+say_hi = lambda name: print(f'Hi, {name}') # Same function but with lambda
+
+def make_adder(x):
+    return lambda y: x + y #how to create make adder function using lambda
+
+def compose(f,g):
+    return lambda x:f(g(x))
+
+make_adder(3)(4) #= 7 in one line
+
+
+sorted([5,4,3,2,1])
+
+###key = lambda _:_ is how to determine HOW to sort the data
+sorted([5,4,3,2,1], key = lambda x: x) #lowest to highest
+sorted([5,4,3,2,1], key = lambda x: -x) #highest to lowest
+
+sorted([(2,'hi'), (1,'how'), (5,'goes'), (7, 'I')], key = lambda x:x[0]) #sort by number, lowest to highest
+sorted([(2,'hi'), (1,'how'), (5,'goes'), (7, 'I')], key = lambda x:x[1]) #sort by word, alphabetically
+sorted([(2,'hi'), (1,'how'), (5,'goes'), (7, 'I')], key = lambda x: len(x[1])) #sort by length of the word
+
+full_names = ['Rebecca Dang', 'Ramya Chitturi', 'Aymeric Barrier', 'Sean Yang' 'Joanna Yoo', 'Amit Sant', 'Michelle Chen', 'John Teng', 'Lukas Chang', 'Anjali Gurajapu', 'Christine Zhang', 'Ethan Yoo', 'Karim Kaylani', 'Mingxiao Wei', 'Michael Ball', 'Sebastian Zhao', 'Hetal Shah']
+
+staff = list(map(lambda w: w.split()[0], full_names))
+sorted(staff, key = lambda name: len(name))
+
+# More practice with map / filter / reduce
+list(map(lambda n: n.split()[0], full_names))
+remove_dupes = lambda result, data: result if data in result else result + [ data ]
+
+from functools import reduce
+reduce(remove_dupes, staff, [])
+
+
+### --- Dictionaries ---###
+## Type of data type that lets us index a value by a number
+## Can assign a common name that describes the elements purpose
+
+course = { #Creating dictionary
+    'name': 'Comp Structures in Data Science',
+    'number': 'C88C', 
+    'room': '155 Dwinelle Hall'}
+course['time'] = '2PM' #adding a key and element to dictionary
+
+text = 'Once Upon A Time'
+
+#count the length of all of the words in a block of text and put in a dictionary
+counts  = { 
+    word : len(word) for word in text.split(' ') }
+
+counts.keys()
+counts.values()
+counts.items()
+# counts['time']
+# counts['hello']
+counts.get('hello')
+
+
